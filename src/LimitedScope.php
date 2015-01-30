@@ -116,7 +116,7 @@ class LimitedScope implements ScopeInterface
     }
 
     /**
-     * Determine if the given where clause is a soft delete constraint.
+     * Determine if the given where clause is a limited constraint.
      *
      * @param  array $where
      * @param  array $columns

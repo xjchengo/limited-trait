@@ -3,11 +3,11 @@
 trait LimitedTrait
 {
     /**
-     * Boot the soft deleting trait for a model.
+     * Boot the limited trait for a model.
      *
      * @return void
      */
-    public static function bootSoftDeletingTrait()
+    public static function bootLimitedTrait()
     {
         static::addGlobalScope(new LimitedScope);
         static::creating(function ($model) {
