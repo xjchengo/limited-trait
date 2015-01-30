@@ -15,7 +15,9 @@ trait LimitedTrait
             foreach ($limitedColumns as $limitedColumn) {
                 $getValueMethod = 'getLimited'.$limitedColumn;
                 if (method_exists($model, $getValueMethod)) {
-                    $model->{$limitedColumn} = $model->{$getValueMethod}();
+                    if (!$model->{$limitedColumn}) {
+                        $model->{$limitedColumn} = $model->{$getValueMethod}();
+                    }
                 }
             }
         });
