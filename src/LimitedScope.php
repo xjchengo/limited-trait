@@ -27,10 +27,11 @@ class LimitedScope implements ScopeInterface
         $limitedColumns = $model->getLimitedColumns();
 
         foreach ($limitedColumns as $limitedColumn) {
-            $getValueMethod = 'getLimited'.$limitedColumn;
+            $getValueMethod = 'getLimited'.ucfirst(camel_case($limitedColumn));
             if (method_exists($model, $getValueMethod)) {
                 $limitedValue = $model->{$getValueMethod}();
-                $builder->where($model->getQualifiedLimtedColumn($limitedColumn), $limitedValue);
+                $qualifiedLimitedColumn = $model->getQualifiedLimitedColumn($limitedColumn);
+                $builder->where($qualifiedLimitedColumn, $limitedValue);
             }
         }
 

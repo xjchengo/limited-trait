@@ -13,7 +13,7 @@ trait LimitedTrait
         static::creating(function ($model) {
             $limitedColumns = $model->getLimitedColumns();
             foreach ($limitedColumns as $limitedColumn) {
-                $getValueMethod = 'getLimited'.$limitedColumn;
+                $getValueMethod = 'getLimited'.ucfirst(camel_case($limitedColumn));
                 if (method_exists($model, $getValueMethod)) {
                     if (!$model->{$limitedColumn}) {
                         $model->{$limitedColumn} = $model->{$getValueMethod}();
@@ -52,7 +52,7 @@ trait LimitedTrait
         return $qualifiedLimitedColumns;
     }
 
-    public function notLimited()
+    public static function notLimited()
     {
         return (new static)->newQueryWithoutScope(new LimitedScope());
     }
