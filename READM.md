@@ -1,1 +1,0 @@
-## Laravel Global Scope for Limiting 
